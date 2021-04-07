@@ -15,7 +15,7 @@ class Hero(Model):
         collection_name = "Hero"
 
     @classmethod
-    def all(cls, cursor=None, list_type='all'):
+    def all(cls, cursor=None, list_type='cursor'):
         """
         Get all heroes
         :param int limit: limit of heroes

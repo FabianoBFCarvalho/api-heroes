@@ -12,7 +12,7 @@ class HeroesHandler(MethodView):
     def get(self):
         """"""
         cursor = request.args.get('cursor')
-        list_type = request.args.get('list_type') or 'all'
+        list_type = request.args.get('list_type') or 'cursor'
 
         heroes = Hero.all(cursor=cursor, list_type=list_type)
         heroes_json = []
@@ -47,6 +47,7 @@ class HeroesHandler(MethodView):
             logging.warning(error)
             return {}
 
+
 class HeroHandler(MethodView):
     """"""
     def get(self, id):
@@ -79,7 +80,7 @@ class HeroHandler(MethodView):
 
             Hero.collection.delete('Hero/%s' % id)
 
-            return {'deleted'}, 204
+            return {'success': 'deleted'}, 200
         except Exception as error:
             return {'error': str(error)}, 500
 
@@ -101,7 +102,7 @@ class TopHeroesHandler(MethodView):
         """"""
         try:
             import random
-            heroes = Hero.all()
+            heroes = Hero.all(list_type='all')
             heroes_json = []
             for hero in heroes:
                 heroes_json.append(hero.to_dict())
