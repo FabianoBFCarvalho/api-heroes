@@ -1,0 +1,7 @@
+Flask==1.1.2
+flask_cors
+flask_restful
+firebase_admin
+google-cloud-firestore
+google-auth
+fireo
