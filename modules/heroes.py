@@ -7,9 +7,14 @@ class HeroesModule(object):
     @classmethod
     def create(cls, params):
         """"""
+        if not params.get('name'):
+            return {'error': str('name is required')}, 400
+        if not params.get('universe'):
+            return {'error': str('universe is required')}, 400
+
         hero = Hero()
         hero.name = cls.title_case(params.get('name'))
-        hero.image_url = cls.title_case(params.get('image_url'))
+        hero.image_url = cls.title_case(params.get('imageUrl'))
         hero.description = cls.title_case(params.get('description'))
         hero.universe = cls.title_case(params.get('universe'))
         hero.save()
@@ -19,8 +24,12 @@ class HeroesModule(object):
     @classmethod
     def update(cls, hero, params):
         """"""
+        if not params.get('name'):
+            return {'error': str('name is required')}, 400
+        if not params.get('universe'):
+            return {'error': str('universe is required')}, 400
         hero.name = cls.title_case(params.get('name'))
-        hero.image_url = cls.title_case(params.get('image_url'))
+        hero.image_url = cls.title_case(params.get('imageUrl'))
         hero.description = cls.title_case(params.get('description'))
         hero.universe = cls.title_case(params.get('universe'))
         hero.save()

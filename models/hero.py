@@ -39,3 +39,10 @@ class Hero(Model):
         :return:
         """
         return cls.collection.get('Hero/%s' % hero_id)
+
+    def to_dict(self):
+        """"""
+        hero_dict = super(Hero, self).to_dict()
+        hero_dict['imageUrl'] = self.image_url
+        del (hero_dict['image_url'])
+        return hero_dict

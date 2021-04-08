@@ -5,7 +5,8 @@ from flask import request, Flask
 from flask_cors import CORS
 from flask_restful import Resource, Api
 
-from views.heroes import HeroesHandler, HeroHandler, TopHeroesHandler
+from views.heroes import HeroesHandler, HeroHandler, TopHeroesHandler, \
+    DocumentationHandler
 
 app = Flask(__name__)
 CORS(app)
@@ -38,7 +39,7 @@ API.add_resource(Index, '/', endpoint='index')
 API.add_resource(HeroesHandler, '/heroes', endpoint='heroes')
 API.add_resource(HeroHandler, '/hero/<id>', endpoint='hero')
 API.add_resource(TopHeroesHandler, '/top-heroes', endpoint='top-heroes')
-
+API.add_resource(DocumentationHandler, '/documentation', endpoint='documentation')
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
